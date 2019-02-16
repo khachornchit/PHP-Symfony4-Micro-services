@@ -5,30 +5,30 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity
- * @Table(name="user")
+ * @ORM\Entity
+ * @@ORM\Table(name="user")
  */
 class User
 {
     /**
-     * @Id
-     * @GeneratedValue
-     * @Column(type="smallint")
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="smallint")
      */
     private $id;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $username;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $userpassword;
 
     /**
-     * @Column(type="string")
+     * @ORM\Column(type="string")
      */
     private $description;
 
