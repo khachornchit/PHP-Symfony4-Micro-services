@@ -48,7 +48,6 @@ class UserUpdateCommand extends Command
                 $output->writeln('');
                 $output->writeln(sprintf('id : %s', $existingUser->getId()));
                 $output->writeln(sprintf('username : %s', $existingUser->getUsername()));
-                $output->writeln(sprintf('password : %s', $existingUser->getUserpassword()));
 
                 $output->writeln('');
                 $output->writeln(sprintf('/****************************************/'));
