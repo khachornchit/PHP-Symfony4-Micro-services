@@ -29,14 +29,12 @@ class HelloCommand extends Command
 
     public function execute(InputInterface $input, OutputInterface $output)
     {
-        $db = new BaseManager();
         $helper = $this->getHelper('question');
         $questionUsername = new Question('Please enter name : ', '');
         $username = $helper->ask($input, $output, $questionUsername);
 
         if ($username) {
             $output->writeln(sprintf('Welcome : %s :)', $username));
-            $output->writeln(sprintf('DATABASE URL : %s :)', $db->getUrl()));
         } else {
             $output->writeln("Please enter name. Try again, thanks !");
         }
