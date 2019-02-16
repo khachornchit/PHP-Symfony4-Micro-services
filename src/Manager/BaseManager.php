@@ -9,6 +9,7 @@
 
 namespace App\Manager;
 
+use Doctrine\ORM\Configuration;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
@@ -70,10 +71,10 @@ class BaseManager
 
     private function InitDBConfiguration()
     {
-        $this->configuration = Setup::createAnnotationMetadataConfiguration(
-            $paths = [__DIR__ . '/App/Entity'],
-            $isDevMode = true
-        );
+        $proxies_dir = __DIR__ . '/App/models/proxies';
+        $metadata_paths = array(__DIR__ . 'models/Entity');
+        $dev_mode = $_SERVER['APP_ENV'];
+        $this->configuration = Setup::createAnnotationMetadataConfiguration($metadata_paths, $dev_mode, $proxies_dir, null, false);
     }
 
     private function InitDBConnection()

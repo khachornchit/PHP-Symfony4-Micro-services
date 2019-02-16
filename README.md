@@ -8,9 +8,10 @@
 4. composer install
 5. Update mysql connection in .env file at DATABASE_URL
     * **Example**
-    * DATABASE_URL=mysql://root:1234@127.0.0.1:3306/pluto2
-6. Run this command to create database in MySQL
-    * 7.1 php bin/console doctrine:database:create
+    * DATABASE_URL=mysql://root:1234@127.0.0.1:3306/pluto-symfony-microservices
+6. Run follow command 6.1-6.2 to create database and table in MySQL
+    * 6.1 php bin/console doctrine:database:create
+    * 6.2 php bin/console doctrine:migrations:migrate
 
 ## Command List
 ### Hello Test
