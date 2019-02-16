@@ -7,6 +7,8 @@
 3. cd SymfonyMicroservices
 4. composer install
 5. Update mysql connection in .env file at DATABASE_URL
+    * **Example**
+    * DATABASE_URL=mysql://root:1234@127.0.0.1:3306/pluto2
 6. Run this command to create database in MySQL
     * 7.1 php bin/console doctrine:database:create
 
