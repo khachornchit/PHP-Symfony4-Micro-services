@@ -1,35 +1,27 @@
-# CRUD Symfony CLI Application 
-`by John <john@pluto.solutions>`
+# Symfony Microservices Application
+`Author John <john@pluto.solutions>`
 
-## Initial Setup
-1. Make sure you are using php version 7.2+
-2. git clone git@github.com:plutosolutions/symfonycli.git
-3. cd symfonycli
+## Setup
+1. Make sure you are using php 7.1+, composer, and MySQL 
+2. git clone git@github.com:plutosolutions/SymfonyMicroservices.git
+3. cd SymfonyMicroservices
 4. composer install
-5. Change database configuration at file symfonycli\cli-config.php
-6. Change database configuration at file symfonycli\src\Manager\UserManager.php
-7. Run this command to create database in MySQL
-    * 7.1 vendor/bin/doctrine orm:schema-tool:update --force
+5. Update mysql connection in .env file at DATABASE_URL
+6. Run this command to create database in MySQL
+    * 7.1 php bin/console doctrine:database:create
 
-## Google documentation
-https://docs.google.com/document/d/1C7-uDyNF1ljru8qmE_VCfEnjkZZQkqFPV06Avz9Zi0Y/edit?usp=sharing
-
-## Hello Test
-* Run this command to ensure the app work property
-    * php console.php hello John
+## Command List
+### Hello Test
+    * php bin/console hello
     
-## CREATE User Example
-* Run this command to create a new user
-    * php console.php user-create john@pluto.solutions HH98903#@%#$@
+### CREATE User Example
+    * php bin/console user-create
     
-## READ User Example
-* Run this command to read user info of user id#5
-    * php console.php user-read 5
+### READ User Example
+    * php console.php user-read
 
-## UPDATE User Example
-* Run this command to update user info of user id#5
-    * php console.php user-update 5 update@update.com HH98903#@%#$@
+### UPDATE User Example
+    * php bin/console user-update
 
-## DELETE User Example
-* Run this command to delete user user id#5
-    * php console.php user-delete 5
+### DELETE User Example
+    * php bin/console user-delete
