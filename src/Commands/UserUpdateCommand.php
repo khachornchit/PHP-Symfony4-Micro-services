@@ -21,6 +21,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
+/**
+ * Class UserUpdateCommand
+ * @package App\Commands
+ */
 class UserUpdateCommand extends Command
 {
     public function configure()
@@ -33,25 +37,20 @@ class UserUpdateCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
-        $questionUserId = new Question('Please enter used id : ', '');
-        $questionUserName = new Question('Please enter new username : ', '');
-        $questionUserPassword = new Question('Please enter new password : ', '');
+        $questionUserId = new Question('<question>Please enter used id : </question>', '');
+        $questionUserName = new Question('<question>Please enter new username : </question>', '');
+        $questionUserPassword = new Question('<question>Please enter new password : </question>', '');
 
         if ($userId = $helper->ask($input, $output, $questionUserId)) {
             try {
                 $userManager = new UserManager();
                 $existingUser = $userManager->find($userId);
 
-                $output->writeln('');
-                $output->writeln(sprintf('/****************************/'));
-                $output->writeln(sprintf('Existing user information ...'));
-                $output->writeln('');
-                $output->writeln(sprintf('id : %s', $existingUser->getId()));
-                $output->writeln(sprintf('username : %s', $existingUser->getUsername()));
+                $output->writeln(sprintf('<comment>Existing user information</comment>'));
+                $output->writeln(sprintf('<info>id : %s </info>', $existingUser->getId()));
+                $output->writeln(sprintf('<info>username : %s </info>', $existingUser->getUsername()));
 
-                $output->writeln('');
-                $output->writeln(sprintf('/****************************************/'));
-                $output->writeln(sprintf('Please enter new information to this user.'));
+                $output->writeln(sprintf('<comment>Please enter new information to this user.</comment>'));
                 $output->writeln('');
 
                 if ($userName = $helper->ask($input, $output, $questionUserName)) {
@@ -63,12 +62,9 @@ class UserUpdateCommand extends Command
                             $user = User::update($userName, $userPassword, $existingUser);
                             $userManager->update($user);
 
-                            $output->writeln('');
-                            $output->writeln(sprintf('/***************************************/'));
-                            $output->writeln(sprintf('Updated user information successfully ...'));
-                            $output->writeln('');
-                            $output->writeln(sprintf('id : %s', $user->getId()));
-                            $output->writeln(sprintf('username : %s', $user->getUsername()));
+                            $output->writeln(sprintf('<comment>Updated user information successfully</comment>'));
+                            $output->writeln(sprintf('<info>id : %s </info>', $user->getId()));
+                            $output->writeln(sprintf('<info>username : %s </info>', $user->getUsername()));
                         }
                     }
                 }
@@ -76,7 +72,7 @@ class UserUpdateCommand extends Command
                 $output->writeln($exception->getMessage());
             }
         } else {
-            $output->writeln("Please try again, thanks !");
+            $output->writeln(sprintf('<error>Please try again, thanks !</error>'));
         }
     }
 }

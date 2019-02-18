@@ -20,6 +20,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
+/**
+ * Class UserCreateCommand
+ * @package App\Commands
+ */
 class UserCreateCommand extends Command
 {
     public function configure()
@@ -32,8 +36,8 @@ class UserCreateCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
-        $questionUserName = new Question('Please enter username : ', '');
-        $questionUserPassword = new Question('Please enter password : ', '');
+        $questionUserName = new Question('<question>Please enter username : </question>', '');
+        $questionUserPassword = new Question('<question>Please enter password : </question>', '');
 
         if ($userName = $helper->ask($input, $output, $questionUserName)) {
             if ($userPassword = $helper->ask($input, $output, $questionUserPassword)) {
@@ -45,16 +49,13 @@ class UserCreateCommand extends Command
                     $user = User::create($userName, $userPassword);
                     $userManager->update($user);
 
-                    $output->writeln('');
-                    $output->writeln(sprintf('/*******************************/'));
-                    $output->writeln(sprintf('Created a new user successfully !'));
-                    $output->writeln('');
-                    $output->writeln(sprintf('id : %s', $user->getId()));
-                    $output->writeln(sprintf('username : %s', $user->getUsername()));
+                    $output->writeln(sprintf('<comment>Created a new user successfully !</comment>'));
+                    $output->writeln(sprintf('<info>id : %s </info>', $user->getId()));
+                    $output->writeln(sprintf('<info>username : %s </info>', $user->getUsername()));
                 }
             }
         } else {
-            $output->writeln("Please try again, thanks !");
+            $output->writeln("<error>Please try again, thanks !</error>");
         }
     }
 }

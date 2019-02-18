@@ -20,6 +20,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
+/**
+ * Class UserDeleteCommand
+ * @package App\Commands
+ */
 class UserDeleteCommand extends Command
 {
     public function configure()
@@ -32,18 +36,15 @@ class UserDeleteCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
-        $questionUserId = new Question('Please enter used id : ', '');
+        $questionUserId = new Question('<question>Please enter used id : </question>', '');
 
         if ($userId = $helper->ask($input, $output, $questionUserId)) {
             $userManager = new UserManager();
-            $user = $userManager->delete($userId);
+            $userManager->delete($userId);
 
-            $output->writeln('');
-            $output->writeln(sprintf('/****************/'));
-            $output->writeln(sprintf('Deleted user id : '.$userId));
-            $output->writeln('');
+            $output->writeln(sprintf('<info>Deleted user id : %s successfully ! </info>' , $userId));
         } else {
-            $output->writeln("Please try again, thanks !");
+            $output->writeln(sprintf('<error>Please try again, thanks ! </error>'));
         }
     }
 }

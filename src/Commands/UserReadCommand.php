@@ -21,6 +21,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
+/**
+ * Class UserReadCommand
+ * @package App\Commands
+ */
 class UserReadCommand extends Command
 {
     public function configure()
@@ -33,25 +37,22 @@ class UserReadCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
-        $questionUserId = new Question('Please enter used id : ', '');
+        $questionUserId = new Question('<question>Please enter used id : </question>', '');
 
         if ($userId = $helper->ask($input, $output, $questionUserId)) {
             try {
                 $userManager = new UserManager();
                 $user = $userManager->find($userId);
 
-                $output->writeln('');
-                $output->writeln(sprintf('/******************/'));
-                $output->writeln(sprintf('User Information ...'));
-                $output->writeln('');
-                $output->writeln(sprintf('id : %s', $user->getId()));
-                $output->writeln(sprintf('username : %s', $user->getUsername()));
+                $output->writeln(sprintf('<comment>User Information</comment>'));
+                $output->writeln(sprintf('<info>id : %s </info>', $user->getId()));
+                $output->writeln(sprintf('<info>username : %s </info>', $user->getUsername()));
 
             } catch (Exception $exception) {
                 $output->writeln($exception->getMessage());
             }
         } else {
-            $output->writeln("Please try again, thanks !");
+            $output->writeln(sprintf('<error>Please try again, thanks !</error>'));
         }
     }
 }

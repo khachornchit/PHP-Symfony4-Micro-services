@@ -18,6 +18,10 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Question\Question;
 
+/**
+ * Class HelloCommand
+ * @package App\Commands
+ */
 class HelloCommand extends Command
 {
     public function configure()
@@ -30,13 +34,13 @@ class HelloCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         $helper = $this->getHelper('question');
-        $questionUsername = new Question('Please enter name : ', '');
+        $questionUsername = new Question('<question>Please enter name : </question>', '');
         $username = $helper->ask($input, $output, $questionUsername);
 
         if ($username) {
-            $output->writeln(sprintf('Welcome : %s :)', $username));
+            $output->writeln(sprintf('<info>Welcome : %s :)</info>', $username));
         } else {
-            $output->writeln("Please enter name. Try again, thanks !");
+            $output->writeln(sprintf('<error>Please enter your name. Try again, thanks !</error>'));
         }
     }
 }
