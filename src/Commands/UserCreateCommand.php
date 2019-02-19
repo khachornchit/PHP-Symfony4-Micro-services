@@ -42,20 +42,22 @@ class UserCreateCommand extends Command
         if ($userName = $helper->ask($input, $output, $questionUserName)) {
             if ($userPassword = $helper->ask($input, $output, $questionUserPassword)) {
                 $passwordStrength = User::passwordStrengthCheck($userPassword);
-                if ($passwordStrength["password_strength"] == false) {
-                    $output->writeln($passwordStrength);
-                } else {
-                    $userManager = new UserManager();
-                    $user = User::create($userName, $userPassword);
-                    $userManager->update($user);
+                if ($passwordStrength->getStatus()) {
+                    try {
+                        $userManager = new UserManager();
+                        $user = User::create($userName, $userPassword);
+                        $userManager->update($user);
 
-                    $output->writeln(sprintf('<comment>Created a new user successfully !</comment>'));
-                    $output->writeln(sprintf('<info>id : %s </info>', $user->getId()));
-                    $output->writeln(sprintf('<info>username : %s </info>', $user->getUsername()));
+                        $output->writeln(sprintf('<comment>Created a new user successfully !</comment>'));
+                        $output->writeln(sprintf('<info>id : %s </info>', $user->getId()));
+                        $output->writeln(sprintf('<info>username : %s </info>', $user->getUsername()));
+                    } catch (\Exception $exception) {
+                        $output->writeln($exception->getMessage());
+                    }
+                } else {
+                    $output->writeln($passwordStrength->getError());
                 }
             }
-        } else {
-            $output->writeln("<error>Please try again, thanks !</error>");
         }
     }
 }

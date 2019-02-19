@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Model\Message;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -37,11 +38,18 @@ class User
         return $this->id;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUsername()
     {
         return $this->username;
     }
 
+    /**
+     * @param string $username
+     * @return $this
+     */
     public function setUsername(string $username)
     {
         $this->username = $username;
@@ -49,11 +57,18 @@ class User
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getUserpassword()
     {
         return $this->userpassword;
     }
 
+    /**
+     * @param string $userpassword
+     * @return $this
+     */
     public function setUserpassword(string $userpassword)
     {
         $this->userpassword = $userpassword;
@@ -78,11 +93,18 @@ class User
         return $created;
     }
 
+    /**
+     * @return mixed
+     */
     public function getDescription()
     {
         return $this->description;
     }
 
+    /**
+     * @param $description
+     * @return $this
+     */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -106,6 +128,9 @@ class User
         return $updated;
     }
 
+    /**
+     * @param $hashPassword
+     */
     public function checkPassword($hashPassword)
     {
         $first5Chars = substr($hashPassword, 0, 5);
@@ -131,34 +156,23 @@ class User
     }
 
     /**
-     * @param $requestContent
-     * @param $errors
-     * @return array
+     * @param $password
+     * @return Message
      */
     public static function passwordStrengthCheck($password)
     {
-        $pwd = $password;
-        $errors = "";
-        $passwordStrength = false;
-
-        if (strlen($pwd) < 8) {
-            $errors = "!!! Password too short! Please try a new password !!!";
-        } else if (!preg_match("#[0-9]+#", $pwd)) {
-            $errors = "!!! Password must include at least one number! Please try a new password !!!";
-        } else if (!preg_match("#[a-zA-Z]+#", $pwd)) {
-            $errors = "!!! Password must include at least one letter! Please try a new password !!!";
-        } else if (!preg_match("#[A-Z]+#", $pwd)) {
-            $errors = "!!! Password must include at least one UPPER case letter! Please try a new password !!!";
-        } else if (!preg_match("/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:\"\<\>,\.\?\\\]/", $pwd)) {
-            $errors = "!!! Password must include at least one special character! Please try a new password !!!";
+        if (strlen($password) < 8) {
+            return Message::init(false, "Password too short !!!");
+        } else if (!preg_match("#[0-9]+#", $password)) {
+            return Message::init(false, "Password must include at least one number !!!");
+        } else if (!preg_match("#[a-zA-Z]+#", $password)) {
+            return Message::init(false, "Password must include at least one letter !!!");
+        } else if (!preg_match("#[A-Z]+#", $password)) {
+            return Message::init(false, "Password must include at least one UPPER case letter!!!");
+        } else if (!preg_match("/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:\"\<\>,\.\?\\\]/", $password)) {
+            return Message::init(false, "Password must include at least one special character !!!");
         } else {
-            $passwordStrength = true;
+            return Message::status(true);
         }
-
-        return array(
-            "password_strength" => $passwordStrength,
-            "error" => $errors,
-            "password" => "password : " . $pwd
-        );
     }
 }

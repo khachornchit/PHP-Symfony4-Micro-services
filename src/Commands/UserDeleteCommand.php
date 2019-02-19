@@ -12,6 +12,7 @@ namespace App\Commands;
 use App\Entity\User;
 use App\Manager\UserManager;
 use App\Repository\UserRepository;
+use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -39,12 +40,13 @@ class UserDeleteCommand extends Command
         $questionUserId = new Question('<question>Please enter used id : </question>', '');
 
         if ($userId = $helper->ask($input, $output, $questionUserId)) {
-            $userManager = new UserManager();
-            $userManager->delete($userId);
-
-            $output->writeln(sprintf('<info>Deleted user id : %s successfully ! </info>' , $userId));
-        } else {
-            $output->writeln(sprintf('<error>Please try again, thanks ! </error>'));
+            try {
+                $userManager = new UserManager();
+                $userManager->delete($userId);
+                $output->writeln(sprintf('<info>Deleted user id : %s successfully ! </info>', $userId));
+            } catch (Exception $exception) {
+                $output->writeln($exception->getMessage());
+            }
         }
     }
 }

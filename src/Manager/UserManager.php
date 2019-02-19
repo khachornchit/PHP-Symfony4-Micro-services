@@ -11,10 +11,16 @@ namespace App\Manager;
 
 use App\Entity\User;
 
+use App\Model\UserMessage;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
+/**
+ * Class UserManager
+ * @package App\Manager
+ */
 class UserManager extends BaseManager
 {
     private $em;
@@ -32,43 +38,48 @@ class UserManager extends BaseManager
 
     /**
      * @param User $user
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function update(User $user)
     {
-        $this->em->persist($user);
-        $this->em->flush();
+        try {
+            $this->em->persist($user);
+            $this->em->flush();
+        } catch (\Exception $exception) {
+            throw new Exception(UserMessage::getErrorMessageUpdateUser($user));
+        }
     }
 
     /**
      * @param $id
-     * @return User
+     * @return User | null | mixed
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function find($id): User
+    public function find($id)
     {
-        return $this->em->find('App\\Entity\\User', $id);
+        $user = $this->em->find('App\\Entity\\User', $id);
+        if (!$user) {
+            throw new Exception(UserMessage::getErrorMessageFindNotFoundId($id));
+        } else {
+            return $user;
+        }
     }
 
     /**
      * @param $id
-     * @return string
      * @throws \Doctrine\ORM\ORMException
      * @throws \Doctrine\ORM\OptimisticLockException
      * @throws \Doctrine\ORM\TransactionRequiredException
      */
-    public function delete($id): string
+    public function delete($id)
     {
         $user = $this->find($id);
         if ($user) {
             $this->em->remove($user);
             $this->em->flush();
-            return "Deleted used id : " . $id . " successfully !";
         } else {
-            return "Find not found used id : " . $id . " please contact administrator !";
+            throw new Exception(UserMessage::getErrorMessageDeleteId($id));
         }
     }
 }

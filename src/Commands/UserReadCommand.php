@@ -43,16 +43,12 @@ class UserReadCommand extends Command
             try {
                 $userManager = new UserManager();
                 $user = $userManager->find($userId);
-
                 $output->writeln(sprintf('<comment>User Information</comment>'));
                 $output->writeln(sprintf('<info>id : %s </info>', $user->getId()));
                 $output->writeln(sprintf('<info>username : %s </info>', $user->getUsername()));
-
             } catch (Exception $exception) {
                 $output->writeln($exception->getMessage());
             }
-        } else {
-            $output->writeln(sprintf('<error>Please try again, thanks !</error>'));
         }
     }
 }

@@ -56,23 +56,25 @@ class UserUpdateCommand extends Command
                 if ($userName = $helper->ask($input, $output, $questionUserName)) {
                     if ($userPassword = $helper->ask($input, $output, $questionUserPassword)) {
                         $passwordStrength = User::passwordStrengthCheck($userPassword);
-                        if ($passwordStrength["password_strength"] == false) {
-                            $output->writeln($passwordStrength);
-                        } else {
-                            $user = User::update($userName, $userPassword, $existingUser);
-                            $userManager->update($user);
+                        if ($passwordStrength->getStatus()) {
+                            try {
+                                $user = User::update($userName, $userPassword, $existingUser);
+                                $userManager->update($user);
 
-                            $output->writeln(sprintf('<comment>Updated user information successfully</comment>'));
-                            $output->writeln(sprintf('<info>id : %s </info>', $user->getId()));
-                            $output->writeln(sprintf('<info>username : %s </info>', $user->getUsername()));
+                                $output->writeln(sprintf('<comment>Update user successfully !</comment>'));
+                                $output->writeln(sprintf('<info>id : %s </info>', $user->getId()));
+                                $output->writeln(sprintf('<info>username : %s </info>', $user->getUsername()));
+                            } catch (\Exception $exception) {
+                                $output->writeln($exception->getMessage());
+                            }
+                        } else {
+                            $output->writeln($passwordStrength->getError());
                         }
                     }
                 }
             } catch (Exception $exception) {
                 $output->writeln($exception->getMessage());
             }
-        } else {
-            $output->writeln(sprintf('<error>Please try again, thanks !</error>'));
         }
     }
 }
