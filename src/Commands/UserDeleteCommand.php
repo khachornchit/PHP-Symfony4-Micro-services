@@ -29,7 +29,7 @@ class UserDeleteCommand extends Command
 {
     public function configure()
     {
-        $this->setName('user-delete')
+        $this->setName('user:delete')
             ->setDescription('Delete user. See follow Help.')
             ->setHelp('php bin/console user-delete');
     }

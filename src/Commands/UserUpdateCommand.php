@@ -29,7 +29,7 @@ class UserUpdateCommand extends Command
 {
     public function configure()
     {
-        $this->setName('user-update')
+        $this->setName('user:update')
             ->setDescription('Update user info. See follow Help.')
             ->setHelp('php bin/console user-update');
     }

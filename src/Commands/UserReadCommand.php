@@ -29,7 +29,7 @@ class UserReadCommand extends Command
 {
     public function configure()
     {
-        $this->setName('user-read')
+        $this->setName('user:read')
             ->setDescription('Read user info. See follow Help.')
             ->setHelp('php bin/console user-read');
     }
