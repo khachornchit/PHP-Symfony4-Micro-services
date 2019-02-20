@@ -26,7 +26,7 @@ class HelloCommand extends Command
 {
     public function configure()
     {
-        $this->setName('hello')
+        $this->setName('pluto:hello')
             ->setDescription('Hello command !')
             ->setHelp('php bin/console hello');
     }
