@@ -2,7 +2,7 @@
 /**
  * Class/file Message.php
  *
- * @author John Pluto Solutions <john@pluto.solutions>
+ * @author Khachornchit Songsaen
  * Date: 2/19/2019
  * Time: 12:28 PM
  */

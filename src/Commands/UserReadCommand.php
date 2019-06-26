@@ -2,7 +2,7 @@
 /**
  * Class/file UserReadCommand.php
  *
- * @author John Pluto Solutions <john@pluto.solutions>
+ * @author Khachornchit Songsaen
  * Date: 2/16/2019
  * Time: 11:58 AM
  */
@@ -29,7 +29,7 @@ class UserReadCommand extends Command
 {
     public function configure()
     {
-        $this->setName('pluto:user:read')
+        $this->setName('user:read')
             ->setDescription('Read user info. See follow Help.')
             ->setHelp('php bin/console user-read');
     }

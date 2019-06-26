@@ -2,7 +2,7 @@
 /**
  * Class/file UserManager.php
  *
- * @author John Pluto Solutions <john@pluto.solutions>
+ * @author Khachornchit Songsaen
  * Date: 2/16/2019
  * Time: 10:17 AM
  */

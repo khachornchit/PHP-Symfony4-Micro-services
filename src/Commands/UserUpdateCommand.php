@@ -2,7 +2,7 @@
 /**
  * Class/file UserUpdateCommand.php
  *
- * @author John Pluto Solutions <john@pluto.solutions>
+ * @author Khachornchit Songsaen
  * Date: 2/16/2019
  * Time: 11:58 AM
  */
@@ -29,7 +29,7 @@ class UserUpdateCommand extends Command
 {
     public function configure()
     {
-        $this->setName('pluto:user:update')
+        $this->setName('user:update')
             ->setDescription('Update user info. See follow Help.')
             ->setHelp('php bin/console user-update');
     }

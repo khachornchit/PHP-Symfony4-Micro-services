@@ -2,7 +2,7 @@
 /**
  * Class/file BaseManager.php
  *
- * @author John Pluto Solutions <john@pluto.solutions>
+ * @author Khachornchit Songsaen
  * Date: 2/16/2019
  * Time: 12:48 PM
  */
@@ -91,6 +91,8 @@ class BaseManager
 
     private function InitParameters()
     {
+        // DATABASE_URL=mysql://root:1234@db:3306/microservices
+        echo "DATABASE_URL=".$_SERVER['DATABASE_URL'];
         $urls = explode("/", $_SERVER['DATABASE_URL']);
         $userPort = explode(':', $urls[sizeof($urls) - 2]);
         $passwordHost = explode('@', $userPort[1]);

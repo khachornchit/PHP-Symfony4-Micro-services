@@ -2,7 +2,7 @@
 /**
  * Class/file UserCreateCommand.php
  *
- * @author John Pluto Solutions <john@pluto.solutions>
+ * @author Khachornchit Songsaen
  * Date: 2/16/2019
  * Time: 10:00 AM
  */
@@ -28,7 +28,7 @@ class UserCreateCommand extends Command
 {
     public function configure()
     {
-        $this->setName('pluto:user:create')
+        $this->setName('user:create')
             ->setDescription('Create a new user. See follow Help.')
             ->setHelp('php bin/console user-create');
     }

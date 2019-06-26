@@ -2,7 +2,7 @@
 /**
  * Class/file UserDeleteCommand.php
  *
- * @author John Pluto Solutions <john@pluto.solutions>
+ * @author Khachornchit Songsaen
  * Date: 2/16/2019
  * Time: 11:58 AM
  */
@@ -29,7 +29,7 @@ class UserDeleteCommand extends Command
 {
     public function configure()
     {
-        $this->setName('pluto:user:delete')
+        $this->setName('user:delete')
             ->setDescription('Delete user. See follow Help.')
             ->setHelp('php bin/console user-delete');
     }

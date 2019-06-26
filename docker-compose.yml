@@ -1,0 +1,62 @@
+version: '3'
+services:
+  apache:
+    build: .docker/apache
+    container_name: microservices_apache
+    restart: always
+    ports:
+      - 4031:80
+    volumes:
+      - .docker/config/vhosts:/etc/apache2/sites-enabled
+      - .:/home/wwwroot/microservices
+    depends_on:
+      - php
+    networks:
+      - microservices-default
+
+  db:
+    image: mysql:5.7
+    container_name: microservices_db
+    restart: always
+    ports:
+      - 4032:3306
+    volumes:
+      - data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: microservices
+    networks:
+      - microservices-default
+
+  php:
+    build: .docker/php
+    container_name: microservices_php
+    restart: always
+    volumes:
+      - .:/home/wwwroot/microservices
+    environment:
+      - maildev_host=microservices_maildev
+    depends_on:
+      - db
+    networks:
+      - microservices-default
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: microservices_phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+    ports:
+      - 4033:80
+    links:
+      - db
+    networks:
+      - microservices-default
+
+networks:
+  microservices-default:
+
+volumes:
+  data:

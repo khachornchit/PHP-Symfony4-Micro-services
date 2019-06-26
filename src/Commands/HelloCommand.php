@@ -2,7 +2,7 @@
 /**
  * Class/file HelloCommand.php
  *
- * @author John Pluto Solutions <john@pluto.solutions>
+ * @author Khachornchit Songsaen
  * Date: 2/16/2019
  * Time: 9:18 AM
  */
@@ -26,7 +26,7 @@ class HelloCommand extends Command
 {
     public function configure()
     {
-        $this->setName('pluto:hello')
+        $this->setName('hello')
             ->setDescription('Hello command !')
             ->setHelp('php bin/console hello');
     }
