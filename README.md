@@ -2,16 +2,16 @@
 Micro-services Application development using PHP Symfony 4.2 framework to create simpel CRUD.
  
 ## Setup Guide
-1. mkdir -p ~/core/php
-2. cd ~/core/php
-3. git clone git@gitlab.com:khachornchit/php-symfony4-microservices.git
+1. mkdir -p ~/demo/php
+2. cd ~/demo/php
+3. git clone https://gitlab.com/khachornchit/php-symfony4-microservices.git
 4. cd php-symfony4-microservices
 5. docker-compose up -d
 6. browse http://localhost:4033/
     * Expectation: See phpMyAdmin
-    * Able to key in user name and password
+7. Able to key in user name and password
     * Expectation: See microservices database in the phpMyAdmin
-7. docker-compose exec php bash
+8. docker-compose exec php bash
     * php -version
         * Expectation: see PHP 7.2.10
     * ls
