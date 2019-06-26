@@ -1,5 +1,5 @@
 # Micro-services Application
-`Micro-services Application development using PHP Symfony 4.2 framework to create simpel CRUD.`
+Micro-services Application development using PHP Symfony 4.2 framework to create simpel CRUD.
  
 ## Setup Guide
 1. mkdir -p ~/core/php
