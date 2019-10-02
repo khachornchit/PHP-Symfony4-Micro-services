@@ -9,16 +9,15 @@ So, make sure you have installed docker and docker-compose ready on your environ
 * docker/docker-compose
  
 ## Setup Guide
-* git clone git@github.com:Khachornchit/PHP-Symfony4-Micro-services.git
+* git clone https://github.com/Khachornchit/PHP-Symfony4-Micro-services.git
 * cd PHP-Symfony4-Micro-services
 * docker-compose build
 * docker-compose up -d
 * docker-compose exec php bash
 	* cd microservices
 	* composer install
-	* php bin/console d:d:c
-	* php bin/console d:m:m
-	* php bin/console d:s:v
+	* php bin/console doctrine:database:create
+	* php bin/console doctrine:migrations:migrate
 * phpMyAdmin http://localhost:4033
 	* It will created schema microservice in MySQL automatically 
 	
