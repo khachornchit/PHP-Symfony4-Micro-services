@@ -12,7 +12,7 @@ services:
     depends_on:
       - php
     networks:
-      - microservices-default
+      - microservices-network
 
   db:
     image: mysql:5.7
@@ -26,7 +26,7 @@ services:
       MYSQL_ROOT_PASSWORD: 1234
       MYSQL_DATABASE: microservices
     networks:
-      - microservices-default
+      - microservices-network
 
   php:
     build: .docker/php
@@ -34,12 +34,10 @@ services:
     restart: always
     volumes:
       - .:/home/wwwroot/microservices
-    environment:
-      - maildev_host=microservices_maildev
     depends_on:
       - db
     networks:
-      - microservices-default
+      - microservices-network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -53,10 +51,10 @@ services:
     links:
       - db
     networks:
-      - microservices-default
+      - microservices-network
 
 networks:
-  microservices-default:
+  microservices-network:
 
 volumes:
   data:
