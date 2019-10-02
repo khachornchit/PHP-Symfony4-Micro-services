@@ -9,8 +9,8 @@ So, make sure you have installed docker and docker-compose ready on your environ
 * docker/docker-compose
  
 ## Setup Guide
-* git clone https://gitlab.com/khachornchit/php-symfony4-microservices.git
-* cd php-symfony4-microservices
+* git clone git@github.com:Khachornchit/PHP-Symfony4-Micro-services.git
+* cd PHP-Symfony4-Micro-services
 * docker-compose build
 * docker-compose up -d
 * docker-compose exec php bash
