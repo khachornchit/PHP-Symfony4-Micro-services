@@ -18,10 +18,12 @@ So, make sure you have installed docker and docker-compose ready on your environ
 	* composer install
 	* php bin/console doctrine:database:create
 	* php bin/console doctrine:migrations:migrate
-* phpMyAdmin http://localhost:4033
-	* It will created schema microservice in MySQL automatically 
+
+## phpMyAdmin 
+ The schema microservice will be created in MySQL automatically 
+* http://localhost:4033
 	
-## Sample CRUD
+## CRUD
 * CREATE	
 	* php bin/console user:create
 		* enter username : [Your name]
