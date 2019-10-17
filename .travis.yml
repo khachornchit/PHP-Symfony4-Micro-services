@@ -1,0 +1,7 @@
+language: php
+jobs:
+  include:
+    - stage: build
+      script: docker-compose build
+    - stage: run
+      script: docker-compose up -d	

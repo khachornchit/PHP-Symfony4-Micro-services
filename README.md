@@ -3,10 +3,13 @@ This project demonstrate on how to develop microservices application with CRUD m
 
 So, make sure you have installed docker and docker-compose ready on your environment. Then, you can follow the setup guide step by step.
 
-## Stack
-* PHP 7.2, Symfony 4.2
+## Technology Stack
+* Linux
+* Apache
 * MySQL
-* docker/docker-compose
+* PHP 7.2, Symfony 4.2
+* Docker
+* Travis CI | CICD integration
  
 ## Setup Guide
 * git clone https://github.com/Khachornchit/PHP-Symfony4-Micro-services.git
@@ -20,7 +23,7 @@ So, make sure you have installed docker and docker-compose ready on your environ
 	* php bin/console doctrine:migrations:migrate
 
 ## phpMyAdmin 
- The schema microservice will be created in MySQL automatically 
+The schema microservice will be created in MySQL automatically 
 * http://localhost:4033
 	
 ## CRUD
