@@ -1,5 +1,7 @@
+[![Build Status](https://travis-ci.org/Khachornchit/PHP-Symfony4-Micro-services.svg?branch=master)](https://travis-ci.org/Khachornchit/PHP-Symfony4-Micro-services)
+
 # Microservices with PHP Symfony 4.2
-This project demonstrate on how to develop microservices application with CRUD method using PHP Symfony 4.2 framework and PHP version 7.2.10, under docker container environment.
+This project is demonstrated on how to develop micro-services application with CRUD method using PHP Symfony 4.2 framework and PHP version 7.2.10, under docker container environment.
 
 So, make sure you have installed docker and docker-compose ready on your environment. Then, you can follow the setup guide step by step.
 
