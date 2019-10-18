@@ -1,11 +1,4 @@
 language: php
-before_install:
+install:
   - docker-compose build
   - docker-compose up -d
-  - docker-compose exec php bash
-before_script:
-  - cd microservices
-script:  
-  - composer install
-  - php bin/console doctrine:database:create
-  - php bin/console doctrine:migrations:migrate
