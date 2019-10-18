@@ -1,6 +1,8 @@
 language: php
 before_install:
-  - buid.sh
+  - docker-compose build
+  - docker-compose up -d
+  - docker-compose exec php bash
 before_script:
   - cd microservices
 script:  
