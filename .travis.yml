@@ -1,7 +1,11 @@
 language: php
-jobs:
-  include:
-    - stage: build
-      script: docker-compose build
-    - stage: run
-      script: docker-compose up -d	
+before_install:
+  - docker-compose build
+  - docker-compose up -d
+install:
+  - docker-compose exec php bash
+script:
+  - cd microservices
+  - composer install
+  - php bin/console doctrine:database:create
+  - php bin/console doctrine:migrations:migrate
