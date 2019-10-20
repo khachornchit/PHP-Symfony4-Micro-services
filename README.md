@@ -14,7 +14,7 @@ So, make sure you have installed docker and docker-compose ready on your environ
 * Travis CI
 
 ## Pre-requires
-* Install [Docker] (https://www.docker.com/)
+* Install [Docker](https://www.docker.com/)
 
 ## Getting started
 * Clone the repository
