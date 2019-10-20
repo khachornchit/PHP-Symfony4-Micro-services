@@ -11,31 +11,48 @@ So, make sure you have installed docker and docker-compose ready on your environ
 * MySQL
 * PHP 7.2, Symfony 4.2
 * Docker
-* Travis CI | CICD integration
- 
-## Setup Guide
-* git clone https://github.com/Khachornchit/PHP-Symfony4-Micro-services.git
-* cd PHP-Symfony4-Micro-services
-* docker-compose build
-* docker-compose up -d
-* docker-compose exec php bash
-	* cd microservices
-	* composer install
-	* php bin/console doctrine:database:create
-	* php bin/console doctrine:migrations:migrate
+* Travis CI
+
+## Pre-requires
+* Install [Docker] (https://www.docker.com/)
+
+## Getting started
+* Clone the repository
+```
+git clone https://github.com/Khachornchit/PHP-Symfony4-Micro-services.git
+```
+* Build the project
+```
+cd PHP-Symfony4-Micro-services
+docker-compose build
+docker-compose up -d
+```
+* Install dependencies
+```
+docker-compose exec php bash
+cd PHP-Symfony4-Micro-services
+composer install
+php bin/console doctrine:database:create
+php bin/console doctrine:migrations:migrate
+exit
+```
 
 ## phpMyAdmin 
-The schema microservice will be created in MySQL automatically 
-* http://localhost:4033
+* [phpMyAdmin](http://localhost:4033)
 	
 ## CRUD
-* CREATE	
-	* php bin/console user:create
-		* enter username : [Your name]
-		* enter password : Test1234$ 
-* READ	
-	* php console.php user:read
-* UPDATE
-	* php bin/console user:update
-* DELETE	
-	* php bin/console user:delete
+```
+CREATE	
+php bin/console user:create
+- enter username : [Your name]
+- enter password : SamplePassword1234$ 
+
+READ	
+- php console.php user:read
+
+UPDATE
+- php bin/console user:update
+
+DELETE	
+- php bin/console user:delete
+```
